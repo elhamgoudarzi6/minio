@@ -8,9 +8,7 @@ services:
     plan: free
     healthCheckPath: /minio/health/live
     autoDeploy: false
-    dockerCommand: >-
-      /bin/sh -c 'exec minio server --address 0.0.0.0:$PORT
-      --console-address 0.0.0.0:9001 /tmp/minio-data'
+    dockerCommand: minio server --address 0.0.0.0:$PORT /tmp/minio-data
     envVars:
       - key: MINIO_ROOT_USER
         generateValue: true
@@ -18,5 +16,5 @@ services:
         generateValue: true
       - key: PORT
         value: "10000"
-      - key: MINIO_BROWSER_REDIRECT_URL
-        value: ""
+      - key: MINIO_BROWSER
+        value: "off"
